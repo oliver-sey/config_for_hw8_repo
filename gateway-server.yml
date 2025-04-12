@@ -24,16 +24,14 @@ spring:
         predicates:
         - Path=/organization/**
         filters:
-        - RewritePath=/organization/(?<path>.*), /$\{path}
+        - RewritePath=/org/(?<path>.*), /$\{path}
 
-      # TODO: put this back
-      # commenting out manual mappings
-      # - id: licensing-service
-      #   uri: lb://licensing-service
-      #   predicates:
-      #   - Path=/license/**
-      #   filters:
-      #   - RewritePath=/license/(?<path>.*), /$\{path}
+      - id: licensing-service
+        uri: lb://licensing-service
+        predicates:
+        - Path=/license/**
+        filters:
+        - RewritePath=/lic/(?<path>.*), /$\{path}
 
 
        
