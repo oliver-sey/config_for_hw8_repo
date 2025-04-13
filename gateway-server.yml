@@ -33,7 +33,25 @@ spring:
         filters:
         - RewritePath=/lic/(?<path>.*), /$\{path}
 
+      # for the google link
+      - id: google-link
+        uri: https://www.google.com
+        predicates:
+          - Path=/google/**
+        filters:
+          - RewritePath=/google/(?<path>.*), /$\{path}
+          # 200 status disables redirects
+          - SetStatus=200 
 
+      # # for the u of a link
+      - id: arizona-link
+        uri: https://www.arizona.edu
+        predicates:
+          - Path=/arizona/** 
+        filters:
+        # rewrite the path
+          - RewritePath=/arizona/(?<path>.*), /$\{path} 
+          - SetStatus=200
        
 management:
   endpoints:
